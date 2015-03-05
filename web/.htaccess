@@ -1,0 +1,12 @@
+# Settings to hide index.php and ensure pretty urls
+RewriteEngine on
+
+# if a directory or a file exists, use it directly
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# otherwise forward it to index.php
+RewriteRule . index.php
+
+RewriteCond %{HTTP_HOST} ^185\.2\.168\.96$
+RewriteRule ^(.*)$ http://arsen-sargsyan.info/ [L,R=301]
