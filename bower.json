@@ -1,0 +1,15 @@
+{
+  "name": "translator-yii2",
+  "version": "1.0",
+  "homepage": "arsen-sargsyan.info",
+  "description": "transaltion between eng rus arm",
+  "authors": [
+    "Arsen"
+  ],
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "bootstrap": "~3.3.2",
+    "jquery": "~2.1.3"
+  }
+}
