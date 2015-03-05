@@ -1,0 +1,12 @@
+{
+  "name": "vendor_name/translator-yii2",
+  "description": "eng-arm-rus translation",
+  "minimum-stability": "dev",
+  "license": "proprietary",
+  "authors": [
+    {
+      "name": "Arsen",
+      "email": "arsendev1@gmail.com"
+    }
+  ]
+}
