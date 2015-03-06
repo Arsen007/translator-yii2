@@ -2,17 +2,13 @@
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 
-/* @var $this yii\web\View */
-/* @var $form yii\bootstrap\ActiveForm */
-/* @var $model app\models\LoginForm */
-
-$this->title = 'Login';
+$this->title = 'Sign Up';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="site-login">
     <h1><?= Html::encode($this->title) ?></h1>
 
-    <p>Please fill out the following fields to login:</p>
+    <p>Please fill out the following fields to sign up:</p>
 
     <?php $form = ActiveForm::begin([
         'id' => 'login-form',
@@ -23,13 +19,16 @@ $this->params['breadcrumbs'][] = $this->title;
         ],
     ]); ?>
 
+    <?= $form->field($model, 'email') ?>
+
     <?= $form->field($model, 'username') ?>
 
     <?= $form->field($model, 'password')->passwordInput() ?>
 
-    <?= $form->field($model, 'rememberMe', [
-        'template' => "<div class=\"col-lg-offset-1 col-lg-3\">{input}</div>\n<div class=\"col-lg-8\">{error}</div>",
-    ])->checkbox() ?>
+    <?= $form->field($model, 'first_name') ?>
+
+    <?= $form->field($model, 'last_name') ?>
+
 
     <div class="form-group">
         <div class="col-lg-offset-1 col-lg-11">
