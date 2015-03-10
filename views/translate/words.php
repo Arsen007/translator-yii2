@@ -1,4 +1,4 @@
-<div id="editBackground">
+<div id="editBackground" data-dom-cache="false">
 
     <div id="edit">
         <div id="wait_dialog">
