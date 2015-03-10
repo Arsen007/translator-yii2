@@ -8,7 +8,7 @@ class JqueryTableSorterAsset extends AssetBundle
 {
     public $sourcePath = '@bower/tablesorter';
     public $css = [
-        'themes/blue/style.css',
+//        'themes/green/style.css',
     ];
     public $js = [
         'jquery.tablesorter.min.js'

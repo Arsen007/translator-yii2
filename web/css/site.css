@@ -89,3 +89,185 @@ a.desc:after {
     padding: 10px 20px;
     margin: 0 0 15px 0;
 }
+
+td {
+    font-size: 15px;
+    cursor: pointer;
+    font-family: Tahoma;
+}
+
+tr {
+    background-color: rgba(224, 224, 224, 1) !important;
+    background-color: rgba(224, 224, 224, 1) !important;
+}
+
+tr:nth-child(even) {
+    background-color: rgba(247, 251, 252, 1) !important;
+}
+
+.tablesorter {
+    font-family: arial;
+    background-color: #CDCDCD;
+    margin: 10px 0pt 15px;
+    font-size: 8pt;
+    width: 100%;
+    text-align: left;
+}
+
+.tablesorter thead tr th, table.tablesorter tfoot tr th {
+    background-color: rgb(82, 82, 82);
+    border: 1px solid #FFF;
+    font-size: 8pt;
+    padding: 4px;
+}
+
+.tablesorter thead tr .header {
+    background-image: url('images/bg.gif');
+    background-repeat: no-repeat;
+    background-position: center right;
+    cursor: pointer;
+}
+
+.tablesorter tbody td {
+    color: #3D3D3D;
+    padding: 4px;
+    background-color: #FFF;
+    vertical-align: top;
+}
+
+.tablesorter tbody tr.odd td {
+    background-color: rgb(224, 224, 224);
+}
+
+.tablesorter thead tr .headerSortUp {
+    background-image: url('images/asc.gif');
+}
+
+.tablesorter thead tr .headerSortDown {
+    background-image: url('images/desc.gif');
+}
+
+.tablesorter thead tr .headerSortDown, table.tablesorter thead tr .headerSortUp {
+    background-color: #ADC8E8;
+    color: black;
+}
+
+input {
+    font-size: 25px;
+    width: 90%;
+    font-family: Tahoma;
+}
+
+#editBackground {
+    display: none;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.67);
+    left: 0;
+    top: 0;
+    z-index: 999;
+}
+
+#edit {
+    margin: 0 auto;
+    width: 90%;
+    border: solid 1px silver;
+    background-color: steelblue;
+    overflow: hidden;
+    margin-top: 5%;
+    padding: 5px;
+    text-align: center;
+    border-radius: 15px;
+    position: relative;
+}
+
+#edit_buttons_list {
+    margin: 0;
+    padding: 0;
+}
+
+#edit_buttons_list li {
+    display: inline;
+    float: left;
+    /*margin-left: 20px;*/
+}
+
+#edit_buttons_list li button {
+    border: 1px solid transparent;
+    background: none;
+    border-radius: 5px;
+}
+
+#edit_buttons_list li button:hover {
+    cursor: pointer;
+    border-color: #ffffff;
+}
+
+#wait_dialog {
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.76);
+    z-index: 55;
+    position: absolute;
+    left: 0;
+    top: 0;
+    border-radius: 15px;
+    display: none;
+}
+
+#toggle_container {
+    position: fixed;
+    bottom: 10px;
+    right: 30px;
+    background-color: rgba(0, 0, 0, 0.66);
+    padding: 5px;
+    border-radius: 7px;
+    z-index: 99;
+}
+
+#flip-mini-label {
+    text-shadow: none !important;
+    color: white !important;
+}
+
+.ui-menu-item{
+    font-size: 20px;
+    border: 1px solid silver;
+    border-radius: 6px;
+    height: 50px;
+
+}
+.labels{
+    font-size: 20px;
+    font-weight: bolder;
+    color: blue;
+}
+.results{
+    font-size: 25px;
+    font-weight: bolder;
+    color: red;
+    font-family: Tahoma;
+}
+
+/*input[type="button"]{*/
+    /*width: 250px;*/
+    /*font-size: 20px;*/
+    /*border: 1px solid blue;*/
+    /*background: silver;*/
+    /*border-radius: 5px;*/
+/*}*/
+
+.ajax-load{
+    background-image: url("/images/ajax-loader.gif")!important;
+    background-repeat: no-repeat!important;
+    background-position: 212px 8px!important;
+}
+
+.ui-menu-item{
+    height: 35px;
+}
+.ui-autocomplete{
+    z-index: 9999999!important;
+}
+.ui-autocomplete { height: 200px; overflow-y: scroll; overflow-x: hidden;}

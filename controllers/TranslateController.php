@@ -55,8 +55,8 @@ class TranslateController extends Controller
     public function actionTranslate()
     {
         $translatedWords = array();
-        if (Yii::$app->request->getQueryParam('word')) {
-            $word = Yii::$app->request->getQueryParam('word');
+        if (Yii::$app->request->post('word')) {
+            $word = Yii::$app->request->post('word');
             $languages = [
                 [
                     'lang' => 'ru',
@@ -127,15 +127,12 @@ class TranslateController extends Controller
     {
         if (Yii::$app->request->post('addAjax')) {
             $model = new Words();
-            $model->attributes = [
-                'english' => $_POST['english'],
+            $model->setAttributes(array_merge([
                 'date' => date("Y-m-d H:i:s"),
-                'priority' => 1,
+                'teach_priority' => 1,
                 'userID' => Yii::$app->user->id,
-                'russian' => $_POST['russian'],
-                'armenian' => $_POST['armenian'],
-            ];
-            $words = $model->addWord();
+            ],Yii::$app->request->post()));
+            $words = $model->save();
         }
         return $this->render('add', ['words' => 44]);
     }
@@ -143,22 +140,24 @@ class TranslateController extends Controller
 
     public function actionUpdateWord()
     {
-        $model = new Words();
-        $model ->setAttributes(Yii::$app->request->getQueryParams());
+        $model = Words::findOne(['id' => Yii::$app->request->post('wordID')]);
+        $model -> setAttributes([
+            'in_russian' => Yii::$app->request->post('russian'),
+            'in_armenian' => Yii::$app->request->post('armenian'),
+            'word' => Yii::$app->request->post('english'),
+        ]);
+
         if($model->validate()){
-            $words = $model ->updateWord();
+            $words = $model->update();
         }
     }
 
 
     public function actionDeleteWord()
     {
-        if(Yii::$app->request->getQueryParam('deleteAjax') && Yii::$app->request->getQueryParam('wordID')){
+        if(Yii::$app->request->post('deleteAjax') && Yii::$app->request->post('wordID')){
             $model = new Words();
-            $model ->attributes = array(
-                'wordID' => $_REQUEST['wordID']
-            );
-            $words = $model ->deleteWord();
+            $words = $model ->deleteAll(['id' => (int)Yii::$app->request->post('wordID')]);
             echo json_encode($words);
         }
     }
