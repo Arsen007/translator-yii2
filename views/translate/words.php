@@ -38,6 +38,7 @@
 
         </tr>
         </thead>
+        <tbody>
         <?php foreach ($words as $key => $value) { ?>
             <tr id="<?php echo $value['id'] ?>">
                 <td class="english"><?php echo $value['word'] ?></td>
@@ -46,6 +47,6 @@
 
             </tr>
         <?php } ?>
-
+        </tbody>
     </table>
 </div>

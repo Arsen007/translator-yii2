@@ -228,26 +228,28 @@ $(function () {
         }
     })
 
-    $('#save').click(function () {
-        $(this).addClass('ajax-load');
-        var thisElement = $(this);
-        $.ajax({
-            url: "/translate/add-word",
-            data: {
-                addAjax: 1,
-                word: $('.ui-input-search input').val(),
-                in_russian: $('#russian_selector option:selected').text(),
-                in_armenian: $('#armenian_selector option:selected').text()
-            },
-            type: "post",
-            success: function (data) {
-                thisElement.removeClass('ajax-load').prop('disabled',true)
-            }
-        })
-    })
+
 
 
 })
+
+$(document).on('click','#save',(function () {
+    $(this).addClass('ajax-load');
+    var thisElement = $(this);
+    $.ajax({
+        url: "/translate/add-word",
+        data: {
+            addAjax: 1,
+            word: $('.ui-input-search input').val(),
+            in_russian: $('#russian_selector option:selected').text(),
+            in_armenian: $('#armenian_selector option:selected').text()
+        },
+        type: "post",
+        success: function (data) {
+            thisElement.removeClass('ajax-load').prop('disabled',true)
+        }
+    })
+}))
 
 $(document).on('click', '#autocomplete2 li a', function () {
     autocomplete_selected = true;

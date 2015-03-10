@@ -122,7 +122,7 @@ tr:nth-child(even) {
 }
 
 .tablesorter thead tr .header {
-    background-image: url('images/bg.gif');
+    background-image: url('/images/bg.gif');
     background-repeat: no-repeat;
     background-position: center right;
     cursor: pointer;
@@ -140,11 +140,11 @@ tr:nth-child(even) {
 }
 
 .tablesorter thead tr .headerSortUp {
-    background-image: url('images/asc.gif');
+    background-image: url('/images/asc.gif');
 }
 
 .tablesorter thead tr .headerSortDown {
-    background-image: url('images/desc.gif');
+    background-image: url('/images/desc.gif');
 }
 
 .tablesorter thead tr .headerSortDown, table.tablesorter thead tr .headerSortUp {
