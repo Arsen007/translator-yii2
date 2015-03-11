@@ -28,11 +28,11 @@ AppAsset::register($this);
             echo Nav::widget([
                 'options' => ['class' => 'navbar-nav navbar-right'],
                 'items' => [
-                    ['label' => 'Home', 'url' => ['/site/index']],
-                    Yii::$app->user->isGuest ? ['label' => 'Sign Up', 'url' => ['/site/signup']]:'',
-                    !Yii::$app->user->isGuest ? ['label' => 'Words', 'url' => ['/translate/words']]:'',
-                    !Yii::$app->user->isGuest ? ['label' => 'Add word', 'url' => ['/translate/add-word']]:'',
-                    Yii::$app->user->isGuest ? ['label' => 'Login', 'url' => ['/site/login']] : ['label' => 'Logout (' . Yii::$app->user->identity->username . ')','url' => ['/site/logout'],'linkOptions' => ['data-method' => 'post']],
+                    ['label' => '', 'url' => ['/site/index'],'linkOptions' => ['style' => 'background-image:url(/images/home-icon.png)']],
+                    Yii::$app->user->isGuest ? ['label' => '','url' => ['/site/signup'],'linkOptions' => ['style' => 'background-image:url(/images/register.png)']]:'',
+                    !Yii::$app->user->isGuest ? ['label' => '', 'url' => ['/translate/add-word'],'linkOptions' => ['style' => 'background-image:url(/images/add-word.png)']]:'',
+                    !Yii::$app->user->isGuest ? ['label' => '', 'url' => ['/translate/words'],'linkOptions' => ['style' => 'background-image:url(/images/word-list.png)']]:'',
+                    Yii::$app->user->isGuest ? ['label' => '', 'url' => ['/site/login'],'linkOptions' => ['style' => 'background-image:url(/images/login.png)']] : ['label' => '','url' => ['/site/logout'],'linkOptions' => ['data-method' => 'post','style' => 'background-image:url(/images/logout.png)']],
                 ],
             ]);
         ?>
@@ -44,8 +44,8 @@ AppAsset::register($this);
 
     <footer class="footer">
         <div class="container">
-            <p class="pull-left">&copy; My Company <?= date('Y') ?></p>
-            <p class="pull-right"><?= Yii::powered() ?></p>
+            <p class="pull-left">&copy; Arsen Sargsyan<?= date('Y') ?></p>
+            <p class="pull-right"><?= Html::a('arsen-sargsyan.info','http://arsen-sargsyan.info') ?></p>
         </div>
     </footer>
 
