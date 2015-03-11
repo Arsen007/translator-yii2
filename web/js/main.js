@@ -92,6 +92,7 @@ $(document).on('click','#remove',function () {
 
 
 $(document).on('slidestop', "#flip-mini",function () {
+    alert('aa');
     if ($(this).val() == 'off') {
         $('table tr').each(function (index, element) {
             $(this).find('td:gt(0)').css('opacity', 0)
@@ -103,8 +104,6 @@ $(document).on('slidestop', "#flip-mini",function () {
     }
 })
 $(function () {
-
-
 
     $('body').keydown(function (e) {
         if (e.which == 27)
