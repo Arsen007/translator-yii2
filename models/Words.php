@@ -57,6 +57,6 @@ class Words extends \yii\db\ActiveRecord
     }
 
     public function getUserWords(){
-        return $this->find()->where(['userID' => Yii::$app->user->id])->all();
+        return $this->find()->where(['userID' => Yii::$app->user->id])->orderBy('id DESC')->all();
     }
 }
