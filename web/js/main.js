@@ -92,15 +92,13 @@ $(document).on('click','#remove',function () {
 
 
 $(document).on('slidestop', "#flip-mini",function () {
-    alert($(this).val());
     if ($(this).val() == 'off') {
         $('table tr').each(function (index, element) {
-            console.log($(this).find('td:gt(0)'))
-            $(this).find('td:gt(0)').css('opacity', 0)
+            $(this).find('td:gt(0)').css('visibility', 'hidden')
         })
     } else {
         $('table tr').each(function (index, element) {
-            $(this).find('td:gt(0)').css('opacity', 10)
+            $(this).find('td:gt(0)').css('visibility', 'show')
         })
     }
 })
