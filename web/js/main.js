@@ -92,7 +92,7 @@ $(document).on('click','#remove',function () {
 
 
 $(document).on('slidestop', "#flip-mini",function () {
-    alert('aa');
+    alert($(this).val());
     if ($(this).val() == 'off') {
         $('table tr').each(function (index, element) {
             $(this).find('td:gt(0)').css('opacity', 0)
