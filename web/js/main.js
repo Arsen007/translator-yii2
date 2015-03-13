@@ -98,7 +98,7 @@ $(document).on('slidestop', "#flip-mini",function () {
         })
     } else {
         $('table tr').each(function (index, element) {
-            $(this).find('td:gt(0)').css('visibility', 'show')
+            $(this).find('td:gt(0)').css('visibility', 'visible')
         })
     }
 })
