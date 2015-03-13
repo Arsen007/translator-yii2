@@ -259,3 +259,7 @@ $(document).on('click', '#autocomplete2 li a', function () {
         $(this).remove();
     })
 })
+
+$(document).on('pagecontainerchange',function(){
+    $('input').focus();
+});
