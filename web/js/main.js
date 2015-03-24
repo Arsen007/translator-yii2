@@ -205,8 +205,13 @@ $(document).on('tap','#get',function () {
 
 $(function () {
 
-    $(document).on('keyup paste change input propertychange','.ui-input-search input', function () {
+    $(document).on('keyup paste change input propertychange','.ui-input-search input', function (e) {
         $('#save').prop('disabled',true);
+        if (e.keyCode == '13') {
+            console.log('aa');
+           $('#get').trigger('tap');
+       }
+
         if ($('#russian_selector').data("mobile-selectmenu") === undefined) {
             $('#russian_selector').selectmenu();
         }
@@ -221,16 +226,6 @@ $(function () {
             $('#get').prop('disabled',true);
         }
     });
-
-    $('#wordfield').keydown(function (e) {
-        if (e.keyCode == '13') {
-            $('#get').click();
-        }
-    })
-
-
-
-
 })
 
 $(document).on('click','#save',(function () {
