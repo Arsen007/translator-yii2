@@ -47,6 +47,8 @@ class TranslateController extends Controller
         $ch = curl_init($Url);
         curl_setopt($ch, CURLOPT_COOKIEFILE, $ckfile);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch,CURLOPT_USERAGENT,'Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2272.118 Safari/537.36');
+//        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
 
         $output = curl_exec($ch);
         return $output;
@@ -70,7 +72,7 @@ class TranslateController extends Controller
             $word = urlencode($word);
             foreach ($languages as $key => $value) {
 
-                $url = 'http://translate.google.com/translate_a/t?client=t&text=' . $word . '&hl=en&sl=en&tl=' . $languages[$key]['lang'] . '&oe=UTF-8&multires=1&otf=2&pc=1&ssel=0&tsel=0&sc=1';
+                $url = 'http://translate.google.com/translate_a/single?client=t&q=' . $word . '&hl=en&sl=en&tl=' . $languages[$key]['lang'] . '&dt=bd&dt=ex&dt=ld&oe=UTF-8&rom=1&ssel=0&tsel=0';
                 $name_en = $this->curl($url);
                 $cleanWords = [];
                 $all_words_array = explode(',', str_replace(',,', ',', preg_replace('/\[|\]|[\"\"]/', '', $name_en)));
