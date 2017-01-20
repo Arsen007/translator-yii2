@@ -5,6 +5,7 @@ namespace app\models;
 use Yii;
 use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveRecord;
+use yii\helpers\Security;
 /**
  * This is the model class for table "user".
  *
@@ -99,7 +100,8 @@ class User extends ActiveRecord implements \yii\web\IdentityInterface
      */
     public function validatePassword($password)
     {
-        return Yii::$app->security->validatePassword($password, $this->password);
+//        echo '<pre>';print_r(Security::validatePassword($password, $this->password));die;
+        return Security::validatePassword($password, $this->password);
     }
 
     /**
