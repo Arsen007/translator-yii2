@@ -29,6 +29,9 @@
     </select>
 </div>
 <div style="overflow-x: scroll">
+    <div>
+        <p>Yout have <b><?php echo count($words)?></b> words</p>
+    </div>
     <table id="words" class="tablesorter">
         <thead>
         <tr style="background-color: #000000;color: whitesmoke;height: 35px;">
