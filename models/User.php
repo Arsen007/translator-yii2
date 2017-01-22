@@ -112,7 +112,7 @@ class User extends ActiveRecord implements \yii\web\IdentityInterface
      */
     public function hashPassword($password)
     {
-        return Yii::$app->security->generatePasswordHash($password);
+        return Security::generatePasswordHash($password);
     }
 
     /**
@@ -130,7 +130,7 @@ class User extends ActiveRecord implements \yii\web\IdentityInterface
      */
     public function generateAuthKey()
     {
-        $this->auth_key = Yii::$app->security->generateRandomString();
+        $this->auth_key = Security::generateRandomKey();
     }
 
     /**
@@ -138,7 +138,7 @@ class User extends ActiveRecord implements \yii\web\IdentityInterface
      */
     public function generateAccessToken()
     {
-        $this->access_token = Yii::$app->security->generateRandomString(32);
+        $this->access_token = Security::generateRandomKey(32);
     }
 
     /**
@@ -146,7 +146,7 @@ class User extends ActiveRecord implements \yii\web\IdentityInterface
      */
     public function generateRandPassword()
     {
-        return Yii::$app->security->generateRandomString(8);
+        return Security::generateRandomKey(8);
     }
 
     /**
