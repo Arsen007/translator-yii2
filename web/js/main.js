@@ -3,7 +3,7 @@ $(document).on('pageshow', function () {
     $('#words').tablesorter({widgets: ['zebra']});
 
 });
-$(document).on('click','tr:gt(0)', function (e) {
+$(document).on('click', 'tr:gt(0)', function (e) {
     $('#english').val($(this).find('.english').text());
     $('#russian').val($(this).find('.russian').text());
     $('#armenian').val($(this).find('.armenian').text());
@@ -12,12 +12,12 @@ $(document).on('click','tr:gt(0)', function (e) {
 });
 
 
-$(document).on('click','#closeEditPopup',function () {
+$(document).on('click', '#closeEditPopup', function () {
     $('#editBackground').hide();
 });
 
 
-$(document).on('click','#update',function () {
+$(document).on('click', '#update', function () {
     $('#wait_dialog').activity({
         segments: 8,
         steps: 3,
@@ -55,7 +55,7 @@ $(document).on('click','#update',function () {
 });
 
 
-$(document).on('click','#remove',function () {
+$(document).on('click', '#remove', function () {
     if (confirm('Are you sure?')) {
         $('#wait_dialog').activity({
             segments: 8,
@@ -91,7 +91,7 @@ $(document).on('click','#remove',function () {
 });
 
 
-$(document).on('slidestop', "#flip-mini",function () {
+$(document).on('slidestop', "#flip-mini", function () {
     if ($(this).val() == 'off') {
         $('table tr').each(function (index, element) {
             $(this).find('td:gt(0)').css('visibility', 'hidden')
@@ -136,8 +136,7 @@ $(document).on('pageshow', "[data-role=page]", function () {
 });
 
 
-
-$(document).on("listviewbeforefilter","#autocomplete2", function (e, data) {
+$(document).on("listviewbeforefilter", "#autocomplete2", function (e, data) {
     autocomplete_selected = false;
     var $ul = $(this),
         $input = $(data.input),
@@ -153,64 +152,64 @@ $(document).on("listviewbeforefilter","#autocomplete2", function (e, data) {
             crossDomain: true,
             data: {
                 word: $input.val()
-            }
-        })
-            .then(function (response) {
-                $.each(response, function (i, val) {
-                    html += "<li><a href='#' class='autocomplete-result'>" + val + "</a></li>";
-                });
-                $ul.html(html);
-                $ul.listview("refresh");
-                $ul.trigger("updatelayout");
+            },
+        }).then(function (response) {
+            $.each(response, function (i, val) {
+                html += "<li><a href='#' class='autocomplete-result'>" + val + "</a></li>";
             });
+            $ul.html(html);
+            $ul.listview("refresh");
+            $ul.trigger("updatelayout");
+            $('#autocomplete2 li').removeClass('hidden ui-screen-hidden');
+        });
     }
 });
 
-$(document).on('tap','#get',function () {
-     $(this).addClass('ajax-load').prop('disabled', 'disabled');
-     var thisElement = $(this);
-     $.ajax({
-         url: "/translate/translate",
-         dataType: "json",
-         data: {word: $('.ui-input-search input').val()},
-         type: "post",
-         dataType: "json",
-         success: function (data) {
-             thisElement.removeClass('ajax-load').removeAttr('disabled');
-             if (Object.keys(data.ru).length > 0) {
-                 $('#russian').html('');
-                 $('#armenian').html('');
-                 $.each(data.ru, function (index, element) {
-                     if (index == 0) {
-                         $('#russian_selector').append('<option selected="selected">' + element + '</option>');
-                     } else {
-                         $('#russian_selector').append('<option>' + element + '</option>');
-                     }
-                 });
-                 $('#russian_selector').selectmenu('refresh', true);
-                 $.each(data.hy, function (index, element) {
-                     if (index == 0) {
-                         $('#armenian_selector').append('<option selected="selected" >' + element + '</option>');
-                     }
-                     $('#armenian_selector').append('<option>' + element + '</option>');
-                 });
-                 $('#armenian_selector').selectmenu('refresh', true);
+$(document).on('tap', '#get', function () {
+    $(this).addClass('ajax-load').prop('disabled', 'disabled');
+    var thisElement = $(this);
+    $.ajax({
+        url: "/translate/translate",
+        dataType: "json",
+        data: {word: $('.ui-input-search input').val()},
+        type: "post",
+        dataType: "json",
+        success: function (data) {
+            thisElement.removeClass('ajax-load').removeAttr('disabled');
+            if (Object.keys(data.ru).length > 0) {
+                $('#russian').html('');
+                $('#armenian').html('');
+                $.each(data.ru, function (index, element) {
+                    if (index == 0) {
+                        $('#russian_selector').append('<option selected="selected">' + element + '</option>');
+                    } else {
+                        $('#russian_selector').append('<option>' + element + '</option>');
+                    }
+                });
+                $('#russian_selector').selectmenu('refresh', true);
+                $.each(data.hy, function (index, element) {
+                    if (index == 0) {
+                        $('#armenian_selector').append('<option selected="selected" >' + element + '</option>');
+                    }
+                    $('#armenian_selector').append('<option>' + element + '</option>');
+                });
+                $('#armenian_selector').selectmenu('refresh', true);
 
-                 $('#save').prop('disabled',false);
-             }
+                $('#save').prop('disabled', false);
+            }
 
-         }
-     })
- });
+        }
+    })
+});
 
 $(function () {
 
-    $(document).on('keyup paste change input propertychange','.ui-input-search input', function (e) {
-        $('#save').prop('disabled',true);
+    $(document).on('keyup paste change input propertychange', '.ui-input-search input', function (e) {
+        $('#save').prop('disabled', true);
         if (e.keyCode == '13') {
             console.log('aa');
-           $('#get').trigger('tap');
-       }
+            $('#get').trigger('tap');
+        }
 
         if ($('#russian_selector').data("mobile-selectmenu") === undefined) {
             $('#russian_selector').selectmenu();
@@ -221,14 +220,14 @@ $(function () {
         $('#russian_selector').html('').selectmenu('refresh', true);
         $('#armenian_selector').html('').selectmenu('refresh', true);
         if (isNaN($(this).val()) && $(this).val() != '') {
-            $('#get').prop('disabled',false);
+            $('#get').prop('disabled', false);
         } else {
-            $('#get').prop('disabled',true);
+            $('#get').prop('disabled', true);
         }
     });
 })
 
-$(document).on('click','#save',(function () {
+$(document).on('click', '#save', (function () {
     $(this).addClass('ajax-load');
     var thisElement = $(this);
     $.ajax({
@@ -241,7 +240,7 @@ $(document).on('click','#save',(function () {
         },
         type: "post",
         success: function (data) {
-            thisElement.removeClass('ajax-load').prop('disabled',true)
+            thisElement.removeClass('ajax-load').prop('disabled', true)
         }
     })
 }))
@@ -254,6 +253,6 @@ $(document).on('click', '#autocomplete2 li a', function () {
     })
 })
 
-$(document).on('pagecontainerchange',function(){
+$(document).on('pagecontainerchange', function () {
     $('input').focus();
 });
