@@ -12,6 +12,8 @@ namespace app\controllers;
 use yii\web\Controller;
 use Yii;
 use app\models\Words;
+use Stichoza\GoogleTranslate\TranslateClient;
+use Stichoza\GoogleTranslate\Tokens\GoogleTokenGenerator;
 
 class TranslateController extends Controller
 {
@@ -56,31 +58,31 @@ class TranslateController extends Controller
 
     public function actionTranslate()
     {
+//        $tr = new TranslateClient(); // Default is from 'auto' to 'en'
+//        $tr->setSource('en'); // Translate from English
+//        $tr->setTarget('hy'); // Translate to Georgian
+//        echo '<pre>';print_r($tr->translate('Goodbye'));die;
         $translatedWords = array();
         if (Yii::$app->request->post('word')) {
             $word = Yii::$app->request->post('word');
             $languages = [
                 [
                     'lang' => 'ru',
-                    'regular' => '/[а-я]|[А-Я]/'
+                    'regular' => '[а-я]{2,50}'
                 ],
                 [
                     'lang' => 'hy',
-                    'regular' => '/[ա-ֆ]|[Ա-Ֆ]/'
+                    'regular' => '[ա-ֆԱ-Ֆ]{4,30}+'
                 ]
             ];
             $word = urlencode($word);
             foreach ($languages as $key => $value) {
-
-                $url = 'http://translate.google.com/translate_a/single?client=t&q=' . $word . '&hl=en&sl=en&tl=' . $languages[$key]['lang'] . '&dt=bd&dt=ex&dt=ld&oe=UTF-8&rom=1&ssel=0&tsel=0';
+                $GoogleTokenGenerator = new GoogleTokenGenerator();
+                $token = $GoogleTokenGenerator->generateToken('en',$languages[$key]['lang'],$word);
+                $url = 'https://translate.google.am/translate_a/single?client=t&sl=en&tl=' . $languages[$key]['lang'] . '&hl=en&dt=at&dt=bd&dt=ex&dt=ld&dt=md&dt=qca&dt=rw&dt=rm&dt=ss&dt=t&ie=UTF-8&oe=UTF-8&rom=1&ssel=0&tsel=0&kc=1&tk='.$token.'&q='.$word;
                 $name_en = $this->curl($url);
-                $cleanWords = [];
-                $all_words_array = explode(',', str_replace(',,', ',', preg_replace('/\[|\]|[\"\"]/', '', $name_en)));
-                foreach ($all_words_array as $key2 => $value2) {
-                    if (preg_match($languages[$key]['regular'], $value2) == 1) {
-                        $cleanWords[] = $value2;
-                    }
-                }
+                preg_match_all('/('.$value['regular'].')/ui',$name_en,$words_matches);
+                $cleanWords = $words_matches[1];
                 $translatedWords[$languages[$key]['lang']] = array_unique($cleanWords);
             }
             echo json_encode($translatedWords);
@@ -104,11 +106,13 @@ class TranslateController extends Controller
             curl_setopt($ch, CURLOPT_RETURNTRANSFER,1); // return into a variable
             curl_setopt($ch, CURLOPT_TIMEOUT, 3); // times out after 4s
             curl_setopt($ch, CURLOPT_POST, 1); // set POST method
-            curl_setopt($ch, CURLOPT_POSTFIELDS, "text='.$word.'&X-Requested-With=XMLHttpRequest"); // add POST fields
-            curl_setopt($ch, CURLOPT_SSLVERSION,3);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, "text='.$word.'"); // add POST fields
+//            curl_setopt($ch, CURLOPT_SSLVERSION, 3);
+//            curl_setopt($ch, CURLOPT_SSL_CIPHER_LIST, 'SSLv3');
             curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
             curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
             $result = curl_exec($ch); // run the whole process
+//            echo '<pre>';print_r(curl_error($ch));die;
             curl_close($ch);
             $results = array();
             $decoded = json_decode($result);
